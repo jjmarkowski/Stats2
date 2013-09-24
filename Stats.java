@@ -23,7 +23,7 @@ public class Stats {
 		System.out.println("Standard Deviation = " + standardDeviation(a));
 
 		//array is allready in order from smallest to largest
-		int[] b = {1,2,3,4,5,6,7,8,9,10};
+		int[] b = {6,7,15,36,39,40,41,42,43,47,49};
 		System.out.println("Median = " + median(b));
 
 		System.out.println("Quartile 1 = " + quartile1(b));
@@ -122,19 +122,17 @@ public class Stats {
 	}
 
 	public static double standardDeviation(int[] a) {
-		double total = 0;
-		double difference = 0;
-		double average = mean(a);
-		double standardDeviation = 0;
+		double dev = 0;
+		double avg = mean(a);
 
 		for (int i=0; i < a.length; i++) {
-			difference = a[i] - average;
-			total = total + difference * difference;
+			dev += (a[i] - avg)*(a[i]-avg);
 		}
-		
-		standardDeviation = Math.sqrt(total/a.length);
 
-		return standardDeviation;
+		dev = dev/ (a.length-1);
+		dev = Math.sqrt(dev);
+
+		return dev;
 	}
 
 	// public static int[] organize(int[] a) {
