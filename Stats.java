@@ -23,7 +23,7 @@ public class Stats {
 		System.out.println("Standard Deviation = " + standardDeviation(a));
 
 		//array is allready in order from smallest to largest
-		int[] b = {6,7,15,36,39,40,41,42,43,47,49};
+		int[] b = {7, 15, 36, 39, 40, 41};
 		System.out.println("Median = " + median(b));
 
 		System.out.println("Quartile 1 = " + quartile1(b));
@@ -83,19 +83,21 @@ public class Stats {
 
 	public static double quartile3(int[] a) {
 		double quartile3 = 0.0;
-		int count = (a.length/2);
+		int count = 0;
+		int[] c = new int[a.length/2];
 
-		double countD = (a.length/2) + .5;
-		int countI = (int)countD;
-
-		int[] b = new int[count];
+		if (a.length % 2 == 0) {
+			count = (a.length/2);
+		} else {
+			count = (a.length/2)+1;
+		}
 
 		int j = 0;
-		for (int i=countI; i<a.length; i++) {
-			b[j] = a[i];
+		for (int i=count; i<a.length; i++) {
+			c[j] = a[i];
 			j++;
 		}
-		quartile3 = median(b);
+		quartile3 = median(c);
 		return quartile3;
 	}
 
@@ -111,47 +113,27 @@ public class Stats {
 					currentCount++;					
 				}				
 			}
-
 			if (currentCount > currentModeCount) {
 				mode = a[i];
 				currentModeCount = currentCount;
-				currentCount = 0;
 			}
+			currentCount = 0;
 		}
 		return mode;
 	}
 
 	public static double standardDeviation(int[] a) {
-		double dev = 0;
+		double deviation = 0;
 		double avg = mean(a);
 
 		for (int i=0; i < a.length; i++) {
-			dev += (a[i] - avg)*(a[i]-avg);
+			deviation += (a[i] - avg)*(a[i]-avg);
 		}
 
-		dev = dev/ (a.length-1);
-		dev = Math.sqrt(dev);
+		deviation = deviation/ (a.length-1);
+		deviation = Math.sqrt(deviation);
 
-		return dev;
+		return deviation;
 	}
-
-	// public static int[] organize(int[] a) {
-	// 	int x = 0;
-	// 	int y = 0;
-
-	// 	for (int i=0; i<a.length; i++) {
-	// 		for (int j=0; j<a.length-1; i++) {
-	// 			if (a[j] > a[j+1]) {
-	// 				x = a[j];
-	// 				y = a[j+1];
-	// 				a[j] = y;
-	// 				a[j+1] = x;
-	// 			}
-	// 		}
-			
-	// 	}
-
-	// 	return a;
-	// }
 	
 }
