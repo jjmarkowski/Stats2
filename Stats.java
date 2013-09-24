@@ -10,23 +10,25 @@ public class Stats {
 		//mode
 		//standard deviation
 		
-		int[] a = {7,8,6,5,8,6,1,2,8,-4};
+		int[] a = {1,2,3,4,5,6,7,8,9,10};
+
 		System.out.println("Max = " + max(a));
 
 		System.out.println("Min = " + min(a));
 
 		System.out.println("Mean = " + mean(a));
 
+		System.out.println("Mode = " + mode(a));
+
+		System.out.println("Standard Deviation = " + standardDeviation(a));
+
 		//array is allready in order from smallest to largest
-		int[] b = {2,5,7,8,9,10,14,18,20,21};
+		int[] b = {1,2,3,4,5,6,7,8,9,10};
 		System.out.println("Median = " + median(b));
 
 		System.out.println("Quartile 1 = " + quartile1(b));
 
 		System.out.println("Quartile 3 = " + quartile3(b));
-
-		System.out.println("Mode = " + mode(a));
-
 	}
 
 	public static int max(int[] a) {
@@ -118,5 +120,40 @@ public class Stats {
 		}
 		return mode;
 	}
+
+	public static double standardDeviation(int[] a) {
+		double total = 0;
+		double difference = 0;
+		double average = mean(a);
+		double standardDeviation = 0;
+
+		for (int i=0; i < a.length; i++) {
+			difference = a[i] - average;
+			total = total + difference * difference;
+		}
+		
+		standardDeviation = Math.sqrt(total/a.length);
+
+		return standardDeviation;
+	}
+
+	// public static int[] organize(int[] a) {
+	// 	int x = 0;
+	// 	int y = 0;
+
+	// 	for (int i=0; i<a.length; i++) {
+	// 		for (int j=0; j<a.length-1; i++) {
+	// 			if (a[j] > a[j+1]) {
+	// 				x = a[j];
+	// 				y = a[j+1];
+	// 				a[j] = y;
+	// 				a[j+1] = x;
+	// 			}
+	// 		}
+			
+	// 	}
+
+	// 	return a;
+	// }
 	
 }
